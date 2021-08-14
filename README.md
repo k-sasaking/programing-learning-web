@@ -36,3 +36,4 @@ Migration table created successfully.
 
 テストで記載します。
 
+変更しました。
