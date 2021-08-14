@@ -32,3 +32,10 @@ Migration table created successfully.
 - 2 機能実装->add->commit->push
 - 3 githubページよりプルリクを作成
 - 4 issueにてプルリク作成したこと記載
+
+
+テストで記載します。
+
+変更しました。
+
+変更しました２
