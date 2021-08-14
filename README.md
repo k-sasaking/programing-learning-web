@@ -39,3 +39,5 @@ Migration table created successfully.
 変更しました。
 
 変更しました２
+
+変更しました３
