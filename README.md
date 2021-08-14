@@ -33,6 +33,7 @@ Migration table created successfully.
 - 3 githubページよりプルリクを作成
 - 4 issueにてプルリク作成したこと記載
 
+<<<<<<< HEAD
 test
 
 test2
@@ -42,3 +43,11 @@ test3
 test4
 
 test5
+=======
+
+テストで記載します。
+
+変更しました。
+
+変更しました２
+>>>>>>> develop
