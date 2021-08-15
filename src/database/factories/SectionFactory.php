@@ -22,7 +22,9 @@ class SectionFactory extends Factory
     public function definition()
     {
         return [
-            //
+            "lesson_id" => $this->faker->numberBetween($min = 1, $max = 30),
+            "sort" => $this->faker->numberBetween($min = 1, $max = 30),
+            "name" => $this->faker->word(),
         ];
     }
 }
