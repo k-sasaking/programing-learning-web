@@ -22,7 +22,10 @@ class LectureFactory extends Factory
     public function definition()
     {
         return [
-            //
+            "section_id" => $this->faker->numberBetween($min = 1, $max = 100),
+            "sort" => $this->faker->numberBetween($min = 1, $max = 50),
+            "title" => $this->faker->word(),
+            "text" => $this->faker->paragraph(),
         ];
     }
 }
