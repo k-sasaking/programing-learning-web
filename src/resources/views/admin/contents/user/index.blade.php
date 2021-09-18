@@ -1,6 +1,15 @@
 @extends('admin.layouts.base')
 
-@section('title', 'メンバー管理 | 管理画面')
+@section('title', 'ユーザー管理 | 管理画面')
+
+@section('breadcrumb')
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="{{ route('admin.user.index') }}">Home</a></li>
+    <li class="breadcrumb-item active" aria-current="page">ユーザー管理</li>
+  </ol>
+</nav>
+@endsection
 
 @section('content')
 <table class="table table-stripe">

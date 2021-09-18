@@ -1,3 +1,14 @@
 /*
     管理画面のcss テーマ
 */
+
+.sidebar button.header {
+    background-color: #007bff;
+    color: #fff;
+}
+
+.sidebar button.active {
+    background-color: #ccc;
+    border-color: #ccc;
+}
+
