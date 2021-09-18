@@ -14,8 +14,8 @@ return [
     */
 
     'defaults' => [
-        'guard' => 'users',
-        'passwords' => 'users',
+        'guard' => 'admins',
+        'passwords' => 'admins',
     ],
 
     /*
@@ -78,7 +78,7 @@ return [
 
         'admins' => [
             'driver' => 'eloquent',
-            'table' => App\Models\Admin::class,
+            'model' => App\Models\Admin::class,
         ],
     ],
 
@@ -124,5 +124,9 @@ return [
     */
 
     'password_timeout' => 10800,
+
+    // 管理者用のsession cookie
+    'session_cookie_admin' => env('SESSION_COOKIE_ADMIN', 'admin_session'),
+
 
 ];
