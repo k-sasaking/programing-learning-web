@@ -8,9 +8,27 @@ use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $users = User::get();
+        $request->validate([
+            'search_name'       => 'max:100',
+            'search_email'       => 'max:100',
+        ], [
+            'search_name.max'         => '名前は:max文字以内で入力して下さい',
+            'search_email.max'         => '名前は:max文字以内で入力して下さい',
+        ]);
+    \Log::debug($request);
+        $query = User::query();
+        if ($request->filled('search_name')) {
+            $query = $query->where('username', 'like', '%' . $request->search_name . '%');
+        }
+        if ($request->filled('search_email')) {
+            $query = $query->where('email', 'like', '%' . $request->search_email . '%')  ;          
+        }
+        if(isset($request->search_account_type)){
+            $query = $query->whereIn('account_type', $request->search_account_type)  ;          
+        }
+        $users = $query->paginate(10);
         return view('admin.contents.user.index',[
             'users' => $users,
         ]);

@@ -11,4 +11,10 @@
     background-color: #ccc;
     border-color: #ccc;
 }
-
+.checkbox_label::before {
+    border: 1px solid #ced4da;
+}
+.checkbox_label::after {
+    border-right: 3px solid #17a2b8;
+    border-bottom: 3px solid #17a2b8;
+}
