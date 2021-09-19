@@ -1,3 +1,20 @@
 /*
     管理画面のcss テーマ
 */
+
+.sidebar button.header {
+    background-color: #007bff;
+    color: #fff;
+}
+
+.sidebar button.active {
+    background-color: #ccc;
+    border-color: #ccc;
+}
+.checkbox_label::before {
+    border: 1px solid #ced4da;
+}
+.checkbox_label::after {
+    border-right: 3px solid #17a2b8;
+    border-bottom: 3px solid #17a2b8;
+}
