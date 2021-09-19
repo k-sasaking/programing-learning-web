@@ -1,6 +1,9 @@
 /*
     管理画面のcss レイアウト
 */
+body {
+    min-height: 100%;
+}
 .username {
     margin: 10px;
 }
@@ -16,4 +19,18 @@
 }
 main {
     margin: 30px;
+}
+.head_menu {
+    text-align: right;
+    margin:10px;
+}
+.head_menu .btn {
+    margin: 0px 10px;
+}
+.foot_menu {
+    text-align: center;
+    margin:10px;
+}
+.foot_menu .btn {
+    margin: 0px 10px;
 }

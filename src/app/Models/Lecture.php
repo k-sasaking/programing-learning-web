@@ -10,4 +10,10 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Lecture extends Model
 {
     use HasFactory, SoftDeletes;
+
+    public function lectures ()
+    {
+        return $this->hasMany(Lecture::class);
+    }
+
 }
