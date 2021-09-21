@@ -116,6 +116,11 @@ return [
     |
     */
 
-    'attributes' => [],
+    'attributes' => [
+        'admin_name' => 'ユーザ名',
+        'email' => 'メールアドレス',
+        'login_id' => 'ログインID',
+        'password' => 'パスワード',
+    ],
 
 ];
