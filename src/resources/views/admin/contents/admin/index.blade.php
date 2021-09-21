@@ -3,6 +3,39 @@
 @section('title', '管理者管理 | 管理画面')
 
 @section('content')
+<div class="search card">
+    <div class="card-header">検索条件</div>
+    <div class="card-body">
+        <form action="{{ route('admin.admin.index') }}" method="GET">
+            <div class="form-group row">
+                <?php $field = 'search_name' ?>
+                <label for="{{$field}}" class="col-sm-2 col-form-label">ユーザー名</label>
+                <div class="col-sm-10">
+                    <input type="text" id="{{$field}}" class="form-control" placeholder="名前" name="{{ $field }}" 
+                    value="{{ old($field, request()->get($field)) }}" >
+                    @if($errors->has($field))
+                        <span class="help-block">{{ $errors->first($field) }}</span>
+                    @endif
+                </div>
+            </div>  
+            <div class="form-group row">
+                <?php $field = 'search_mail' ?>
+                <label for="{{$field}}" class="col-sm-2 col-form-label">メールアドレス</label>
+                <div class="col-sm-10">
+                    <input type="text" id="{{$field}}" class="form-control" placeholder="test@gmail.com" name="{{ $field }}" 
+                    value="{{ old($field, request()->get($field)) }}" >
+                    @if($errors->has($field))
+                        <span class="help-block">{{ $errors->first($field) }}</span>
+                    @endif
+                </div>
+            </div>
+            <div class="search_button">
+                <button type="reset" class="btn btn-secondary">クリア</button>
+                <button type="submit" class="btn btn-primary">検索</button>
+            </div>
+        </form>
+    </div>
+</div>
 <table class="table table-stripe">
     <thead>
         <tr>

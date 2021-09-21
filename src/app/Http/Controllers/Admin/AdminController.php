@@ -34,6 +34,7 @@ class AdminController extends Controller
             'login_id.required'         => ':attributeは必ず入力してください',
             'password.required'         => ':attributeは必ず入力してください',
         ]);
+        //fix: psswordのハッシュ値をDBに入れたい
         Admin::create($request->all());
 
         return redirect()->route('admin.admin.index');
