@@ -39,9 +39,12 @@ class AdminController extends Controller
         return redirect()->route('admin.admin.index');
     }
 
-    public function edit()
+    public function edit($id)
     {
-        return view('admin.contents.admin.edit');
+        $admin = Admin::where('id', $id)->first();
+        return view('admin.contents.admin.edit',[
+            'admin' => $admin,
+        ]);
     }
 
 }

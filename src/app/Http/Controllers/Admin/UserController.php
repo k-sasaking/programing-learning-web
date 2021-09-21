@@ -17,7 +17,7 @@ class UserController extends Controller
             'search_name.max'         => '名前は:max文字以内で入力して下さい',
             'search_email.max'         => '名前は:max文字以内で入力して下さい',
         ]);
-    \Log::debug($request);
+
         $query = User::query();
         if ($request->filled('search_name')) {
             $query = $query->where('username', 'like', '%' . $request->search_name . '%');
