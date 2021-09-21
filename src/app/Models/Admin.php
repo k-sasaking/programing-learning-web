@@ -15,8 +15,9 @@ class Admin extends Authenticatable
     use HasFactory, Notifiable, SoftDeletes;
     protected $guard = 'admins';
     protected $fillable = [
-        'name',
+        'admin_name',
         'email',
+        'login_id',
         'password',
     ];
     protected $hidden = [
