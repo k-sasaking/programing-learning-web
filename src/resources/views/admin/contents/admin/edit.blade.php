@@ -3,7 +3,7 @@
 @section('title', '管理者詳細 | 管理画面')
 
 @section('content')
-<form action="{{ route('admin.admin.store') }}" method="POST">
+        <form action="{{ route('admin.admin.update', ['id' => $admin->id ]) }}" method="POST">
         @csrf     
             <div class="form-group row">
                 <?php $field = 'admin_name' ?>
@@ -50,6 +50,9 @@
                 </div>
             </div>
             <div class="search_button">
+            <a href="javascript:history.back();">
+                <button type="button" class="btn btn-secondary">戻る</button>
+            </a>
                 <button type="submit" class="btn btn-primary">編集</button>
             </div>
         </form>

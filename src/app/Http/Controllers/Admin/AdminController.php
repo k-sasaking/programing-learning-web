@@ -52,4 +52,28 @@ class AdminController extends Controller
         ]);
     }
 
+}    public function update(Request $request, $id)
+    {
+        $request->validate([
+            'admin_name'       => 'required',
+            'email'       => 'required',
+            'login_id'       => 'required',
+        ], [
+            'admin_name.required'         => ':attributeは必ず入力してください',
+            'email.required'         => ':attributeは必ず入力してください',
+            'login_id.required'         => ':attributeは必ず入力してください',
+        ]);
+
+        $admin = Admin::where('id', $id)->first();
+        $admin['admin_name'] = $request['admin_name'];
+        $admin['email'] = $request['email'];
+        $admin['login_id'] = $request['login_id'];
+
+        if($request['password']) {
+            $admin['password'] = Hash::make($request['password']);
+        }
+        $admin->save();
+
+        return redirect()->route('admin.admin.index');
+    }
 }
