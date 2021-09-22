@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Admin;
+use Illuminate\Support\Facades\Hash;
 
 class AdminController extends Controller
 {
@@ -34,7 +35,10 @@ class AdminController extends Controller
             'login_id.required'         => ':attributeは必ず入力してください',
             'password.required'         => ':attributeは必ず入力してください',
         ]);
-        //fix: psswordのハッシュ値をDBに入れたい
+        
+        //psswordのハッシュ値をDBに入れたい
+        $request['password'] = Hash::make($request['password']);
+
         Admin::create($request->all());
 
         return redirect()->route('admin.admin.index');
