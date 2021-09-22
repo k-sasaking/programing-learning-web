@@ -52,7 +52,7 @@ class AdminController extends Controller
         ]);
     }
 
-}    public function update(Request $request, $id)
+    public function update(Request $request, $id)
     {
         $request->validate([
             'admin_name'       => 'required',
@@ -74,6 +74,13 @@ class AdminController extends Controller
         }
         $admin->save();
 
+        return redirect()->route('admin.admin.index');
+    }
+
+    public function destroy($id)
+    {
+        $admin = Admin::where('id', $id)->first();
+        $admin->delete();
         return redirect()->route('admin.admin.index');
     }
 }

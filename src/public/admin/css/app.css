@@ -122,3 +122,6 @@ input[type=radio]:checked + .radio_label::after {
 .search_button button {
     margin: 10px;
 }
+.btn-destroy {
+    display: inline;
+}
