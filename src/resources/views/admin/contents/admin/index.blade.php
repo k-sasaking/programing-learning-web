@@ -19,7 +19,7 @@
                 </div>
             </div>  
             <div class="form-group row">
-                <?php $field = 'search_mail' ?>
+                <?php $field = 'search_email' ?>
                 <label for="{{$field}}" class="col-sm-2 col-form-label">メールアドレス</label>
                 <div class="col-sm-10">
                     <input type="text" id="{{$field}}" class="form-control" placeholder="test@gmail.com" name="{{ $field }}" 
@@ -64,6 +64,7 @@
         @endforeach
     </tbody>
 </table>
+{{ $admins->onEachSide(5)->links('admin.components.pagination') }}
 @endsection
 
 @push('scripts')
