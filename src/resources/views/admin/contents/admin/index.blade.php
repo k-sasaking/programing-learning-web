@@ -53,10 +53,27 @@
             <td>{{ $admin->email }}</td>
             <td>
                 <a href="{{ route('admin.admin.edit', ['id' => $admin->id])  }}" class="btn btn-info" role="button">詳細</a>
-                <a href="javascript:void(0);" class="btn btn-danger btn-stop" role="button">停止</a>
+                @if($admin->id != Auth::user()->id)
+                <form action="{{ route('admin.admin.destroy', ['id' => $admin->id ]) }}" name="destroy" method="POST" class="btn-destroy">
+                    @csrf 
+                    <a href="javascript:void(0);" class="btn btn-danger btn-stop" role="button">削除</a>
+                </form>
+                @endif
             </td>
         </tr>
         @endforeach
     </tbody>
 </table>
 @endsection
+
+@push('scripts')
+<script>
+    $('.btn-stop').on('click',function(){
+        if(confirm('このアカウントを停止しますか？')){
+            let form = $('.btn-destroy')[0];
+            console.log(form);
+            form.submit();
+        }
+    })
+</script>
+@endpush
