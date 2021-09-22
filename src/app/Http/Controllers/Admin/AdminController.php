@@ -9,9 +9,26 @@ use Illuminate\Support\Facades\Hash;
 
 class AdminController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $admins = Admin::get();
+        $request->validate([
+            'search_name'       => 'max:100',
+            'search_email'       => 'max:100',
+        ], [
+            'search_name.max'         => '名前は:max文字以内で入力して下さい',
+            'search_email.max'         => '名前は:max文字以内で入力して下さい',
+        ]);
+
+        $query = Admin::query();
+        if ($request->filled('search_name')) {
+            $query = $query->where('admin_name', 'like', '%' . $request->search_name . '%');
+        }
+        if ($request->filled('search_email')) {
+            $query = $query->where('email', 'like', '%' . $request->search_email . '%')  ;          
+        }
+
+        $admins = $query->paginate(3);
+
         return view('admin.contents.admin.index', [
             'admins' => $admins
         ]);
