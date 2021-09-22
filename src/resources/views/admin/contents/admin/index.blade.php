@@ -71,7 +71,6 @@
     $('.btn-stop').on('click',function(){
         if(confirm('このアカウントを停止しますか？')){
             let form = $('.btn-destroy')[0];
-            console.log(form);
             form.submit();
         }
     })
