@@ -48,7 +48,7 @@
                 <button type="button" class="list-group-item list-group-item-action @if(request()->is('admin/category*')) active @endif"
                      @if(request()->is('admin/category*')) disabled @else onclick="location.href='{{ route('admin.category.index') }}'" @endif>カテゴリー管理</button> 
                 <button type="button" class="list-group-item list-group-item-action @if(request()->is('admin/lesson*')) active @endif"
-                     @if(request()->is('admin/lesson*')) disabled @else onclick="location.href='#'" @endif>レッスン管理</button> 
+                     @if(request()->is('admin/lesson*')) disabled @else onclick="location.href='{{ route('admin.admin.lesson.index') }}'" @endif>レッスン管理</button> 
                 <button type="button" class="list-group-item list-group-item-action @if(request()->is('admin/admin*')) active @endif"
                      @if(request()->is('admin/admin*')) disabled @else onclick="location.href='{{ route('admin.admin.index') }}'" @endif>アドミン管理</button>
             </div>
