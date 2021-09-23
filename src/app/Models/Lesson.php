@@ -10,10 +10,10 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Lesson extends Model
 {
     use HasFactory, SoftDeletes;
-
-    public function sections ()
-    {
-        return $this->hasMany(Section::class);
-    }
-
+    protected $fillable = [
+        'name',
+        'description',
+        'thumbnail_path',
+        'category_id',
+    ];
 }

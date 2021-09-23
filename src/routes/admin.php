@@ -11,6 +11,7 @@ use App\Http\Controllers\Admin\Auth\VerifyEmailController;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Admin\LessonController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -38,6 +39,12 @@ Route::middleware('auth:admins')->group(function () {
     Route::get('/admin/edit/{id}', [AdminController::class, 'edit'])->name('admin.edit');
     Route::post('/admin/edit/{id}', [AdminController::class, 'update'])->name('admin.update');
     Route::post('/admin/delete/{id}', [AdminController::class, 'destroy'])->name('admin.destroy');
+    Route::get('/admin/lesson/', [LessonController::class, 'index'])->name('admin.lesson.index');
+    Route::get('/admin/lesson/create', [LessonController::class, 'create'])->name('admin.lesson.create');
+    Route::post('/admin/lesson/store', [LessonController::class, 'store'])->name('admin.lesson.store');
+    Route::get('/admin/lesson/edit/{id}', [LessonController::class, 'edit'])->name('admin.lesson.edit');
+    Route::post('/admin/lesson/edit/{id}', [LessonController::class, 'update'])->name('admin.lesson.update');
+    Route::post('/admin/lesson/delete/{id}', [LessonController::class, 'destroy'])->name('admin.lesson.destroy');
 });
 
 
