@@ -29,13 +29,12 @@
             </div>  
             <div class="form-group row">
                 <?php $field = 'thumbnail_path' ?>
-                <label for="{{$field}}" class="col-sm-2 col-form-label">サムネイルのパス</label>
-                <div class="col-sm-10">
-                    <input type="text" id="{{$field}}" class="form-control" placeholder="サムネイルのパス" name="{{ $field }}" 
-                    value="{{ $lesson[$field] }}" >
-                    @if($errors->has($field))
-                        <span class="help-block">{{ $errors->first($field) }}</span>
-                    @endif
+                <label for="{{$field}}" class="col-sm-2 col-form-label">サムネイ</label>
+                <div class="col-sm-10 d-flex align-items-end">
+                    <img src="{{ $lesson[$field] }}" height="300px" class="mr-3">
+                    <a href="{{ route('admin.admin.lesson.img.edit', [ 'id' => $lesson->id ]) }}">
+                        <button type="button" class="btn btn-secondary">アップロード</button>
+                    </a>
                 </div>
             </div>  
             <div class="form-group row">

@@ -12,6 +12,7 @@ use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\LessonController;
+use App\Http\Controllers\Admin\ImageController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -45,6 +46,8 @@ Route::middleware('auth:admins')->group(function () {
     Route::get('/admin/lesson/edit/{id}', [LessonController::class, 'edit'])->name('admin.lesson.edit');
     Route::post('/admin/lesson/edit/{id}', [LessonController::class, 'update'])->name('admin.lesson.update');
     Route::post('/admin/lesson/delete/{id}', [LessonController::class, 'destroy'])->name('admin.lesson.destroy');
+    Route::get('/admin/lesson/img/edit/{id}', [ImageController::class, 'edit'])->name('admin.lesson.img.edit');
+    Route::post('/admin/lesson/img/upload/{id}', [ImageController::class, 'update'])->name('admin.lesson.img.update');
 });
 
 
