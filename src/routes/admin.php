@@ -40,6 +40,7 @@ Route::middleware('auth:admins')->group(function () {
     Route::get('/admin/edit/{id}', [AdminController::class, 'edit'])->name('admin.edit');
     Route::post('/admin/edit/{id}', [AdminController::class, 'update'])->name('admin.update');
     Route::post('/admin/delete/{id}', [AdminController::class, 'destroy'])->name('admin.destroy');
+    Route::post('/admin/user/csvdownload', [UserController::class, 'csvdownload'])->name('admin.user.csvdownload');
     Route::get('/admin/lesson/', [LessonController::class, 'index'])->name('admin.lesson.index');
     Route::get('/admin/lesson/create', [LessonController::class, 'create'])->name('admin.lesson.create');
     Route::post('/admin/lesson/store', [LessonController::class, 'store'])->name('admin.lesson.store');

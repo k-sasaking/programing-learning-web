@@ -72,6 +72,12 @@
         </form>
     </div>
 </div>
+<div class="head_menu">
+    <form action="{{ route('admin.admin.user.csvdownload') }}" method="POST">
+        @csrf
+        <button type="submit" class="btn btn-success" role="button">csvダウンロード</a>
+    </form>
+</div>
 <table class="table table-stripe">
     <thead>
         <tr>
