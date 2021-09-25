@@ -58,7 +58,6 @@ class UserController extends Controller
             'updated_at'
         ])->toArray();
         $result = array_merge($csvTitle, $csvList);
-        \Log::debug($result);
 
         $response = new StreamedResponse (function() use ($request, $result){
             $stream = fopen('php://output', 'w');
