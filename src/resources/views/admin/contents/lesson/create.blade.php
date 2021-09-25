@@ -2,6 +2,17 @@
 
 @section('title', '管理者作成 | 管理画面')
 
+@section('breadcrumb')
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="{{ route('admin.user.index') }}">Home</a></li>
+    <li class="breadcrumb-item"><a href="{{ route('admin.admin.lesson.index') }}">レッスン管理</a></li>
+    <li class="breadcrumb-item active" aria-current="page">レッスン新規作成</li>
+  </ol>
+</nav>
+@endsection
+
+
 @section('content')
         <form action="{{ route('admin.admin.lesson.store')}}" method="POST">
         @csrf

@@ -2,6 +2,16 @@
 
 @section('title', '管理者作成 | 管理画面')
 
+@section('breadcrumb')
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="{{ route('admin.user.index') }}">Home</a></li>
+    <li class="breadcrumb-item"><a href="{{ route('admin.admin.index') }}">アドミン管理</a></li>
+    <li class="breadcrumb-item active" aria-current="page">新規管理者作成</li>
+  </ol>
+</nav>
+@endsection
+
 @section('content')
         <form action="{{ route('admin.admin.store') }}" method="POST">
         @csrf     
@@ -49,6 +59,18 @@
                     @endif
                 </div>
             </div>
+            <div class="form-group row">
+                <?php $field = 'password_confirmation' ?>
+                <label for="{{$field}}" class="col-sm-2 col-form-label">パスワード確認</label>
+                <div class="col-sm-10">
+                    <input type="password" id="{{$field}}" class="form-control" placeholder="*****" name="{{ $field }}" 
+                    value="" >
+                    @if($errors->has($field))
+                        <span class="help-block">{{ $errors->first($field) }}</span>
+                    @endif
+                </div>
+            </div>
+
             <div class="search_button">
                 <button type="submit" class="btn btn-primary">作成</button>
             </div>
