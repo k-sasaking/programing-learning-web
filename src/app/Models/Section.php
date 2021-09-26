@@ -10,4 +10,12 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Section extends Model
 {
     use HasFactory, SoftDeletes;
+    protected $fillable = [
+        'id',
+        'sort',
+        'lesson_id',
+        'name',
+        'created_at',
+        'updated_at',
+    ];
 }

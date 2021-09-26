@@ -12,6 +12,7 @@ use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\LessonController;
+use App\Http\Controllers\Admin\SectionController;
 use App\Http\Controllers\Admin\ImageController;
 use Illuminate\Support\Facades\Route;
 
@@ -46,9 +47,14 @@ Route::middleware('auth:admins')->group(function () {
     Route::post('/admin/lesson/store', [LessonController::class, 'store'])->name('admin.lesson.store');
     Route::get('/admin/lesson/edit/{id}', [LessonController::class, 'edit'])->name('admin.lesson.edit');
     Route::post('/admin/lesson/edit/{id}', [LessonController::class, 'update'])->name('admin.lesson.update');
+    Route::get('/admin/lesson/detail/{id}', [LessonController::class, 'detail'])->name('admin.lesson.detail');
     Route::post('/admin/lesson/delete/{id}', [LessonController::class, 'destroy'])->name('admin.lesson.destroy');
     Route::get('/admin/lesson/img/edit/{id}', [ImageController::class, 'edit'])->name('admin.lesson.img.edit');
     Route::post('/admin/lesson/img/upload/{id}', [ImageController::class, 'update'])->name('admin.lesson.img.update');
+    Route::post('/admin/lesson/{id}/section/create', [SectionController::class, 'create'])->name('admin.lesson.section.create');
+    Route::post('/admin/lesson/{id}/section/update/{sec_id}', [SectionController::class, 'update'])->name('admin.lesson.section.update');
+    Route::post('/admin/lesson/{id}/section/sort', [SectionController::class, 'sort'])->name('admin.lesson.section.sort');
+    Route::post('/admin/lesson/{id}/section/destroy/{sec_id}', [SectionController::class, 'destroy'])->name('admin.lesson.section.destory');
 });
 
 
