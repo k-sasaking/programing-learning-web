@@ -70,9 +70,9 @@
         </tr>
     </thead>
     <tbody id="sort_table">
-        @foreach($sections as $key => $section)
+        @foreach($sections as $section)
         <tr>
-            <td class="no" data-db-sort-id="{{ $key }}">{{ $key + 1 }}</td>
+            <td class="no" data-section-id="{{ $section->id }}">{{ $section->sort  }}</td>
             <td>{{ $section->name }}</td>
             <td>{{ $section->created_at }}</td>
             <td>{{ $section->updated_at }}</td>
@@ -113,6 +113,7 @@
 <script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js"></script>
 <script>
 let Section = {
+    el: document.querySelector('#sort_table'),
     data: null,
     url: null,
     create: function (data) {
@@ -127,22 +128,33 @@ let Section = {
     },
     sort: function (data) {
         this.url = "{{ route('admin.admin.lesson.section.sort', [ 'id' => $lesson->id, ]) }}";
-        this.data = data;
-        console.log(this);
+
+        /** データの整理
+         * サーバに渡すための[<セクションテーブルのid>,...]の配列をつくりたい
+         */
+        let arr = [];
+        for(const element of Array.from(this.el.getElementsByClassName('no'))) {
+            arr.push(element.getAttribute('data-section-id'));
+        }
+        this.data = { 'sort_data' : arr};
+
         return this;
+    },
+    destory: function (data) {
+        this.url = "{{ route('admin.admin.lesson.section.sort', [ 'id' => $lesson->id, ]) }}";
     },
     send: function () {
         try {
-            if(!this.url|!this.data) throw new Error('URLが間違っているか、送信データがありません')
+            if(!this.url|!this.data) throw new Error('URLが無いか、または送信データがありません')
             $.ajax({
                 method: 'POST',
                 url: this.url,
                 data: this.data,
                 headers: {
-                    'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                    'X-CSRF-TOKEN': '{{ csrf_token() }}',
                 },
             }).done(function( data ) {
-                console.log(data);
+                if(!data) alert('順番を変更することができませんでした') 
             }) 
         } catch(err) {
             alert(err);
@@ -159,7 +171,7 @@ let sortable = Sortable.create(sort_table, {
         $('#sort_table tr').each(function(index, element){
             $(element).find('.no').text(index+1)
         })
-        Section.sort({"test data" : "Hi"}).send();
+        Section.sort().send();
     },
 });
 </script>

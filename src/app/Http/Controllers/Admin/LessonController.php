@@ -98,7 +98,7 @@ class LessonController extends Controller
     {
         $lesson = Lesson::where('id', $id)->first();
         $categorys = Category::get(['id','name',]);
-        $sections = Lesson::find($id)->sections;
+        $sections = Lesson::find($id)->sections->sortBy('sort');
         return view('admin.contents.lesson.detail', [
             'lesson' => $lesson,
             'categorys' => $categorys,
