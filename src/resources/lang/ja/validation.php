@@ -88,6 +88,8 @@ return [
     'uploaded'             => ':attributeのアップロードに失敗しました。',
     'url'                  => ':attributeには正しい形式のURLを指定してください。',
 
+    'alpha_num_half' => '半角英数字で入力してください',
+    'alpha_num_symbol_half' => '半角英数字記号を入力してください',
     /*
     |--------------------------------------------------------------------------
     | Custom Validation Language Lines

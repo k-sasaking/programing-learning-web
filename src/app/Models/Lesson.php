@@ -16,4 +16,9 @@ class Lesson extends Model
         'thumbnail_path',
         'category_id',
     ];
+
+    public function sections ()
+    {
+        return $this->hasMany(Section::class);
+    }
 }

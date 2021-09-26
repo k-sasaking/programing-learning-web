@@ -6,7 +6,7 @@
 <nav aria-label="breadcrumb">
   <ol class="breadcrumb">
     <li class="breadcrumb-item"><a href="{{ route('admin.user.index') }}">Home</a></li>
-    <li class="breadcrumb-item active" aria-current="page">ユーザー管理</li>
+    <li class="breadcrumb-item active" aria-current="page">レッスン管理</li>
   </ol>
 </nav>
 @endsection
@@ -61,7 +61,8 @@
             <td>{{ $lesson->name }}</td>
             <td>{{ $lesson->description }}</td>
             <td>
-                <a href="{{ route('admin.admin.lesson.edit', ['id' => $lesson->id ]) }}" class="btn btn-info" role="button">詳細</a>
+                <a href="{{ route('admin.admin.lesson.edit', ['id' => $lesson->id ]) }}" class="btn btn-primary" role="button">編集</a>
+                <a href="{{ route('admin.admin.lesson.detail', ['id' => $lesson->id ]) }}" class="btn btn-info" role="button">詳細</a>
                 <form action="{{ route('admin.admin.lesson.destroy', ['id' => $lesson->id ]) }}" name="destroy" method="POST" class="btn-destroy">
                     @csrf 
                     <a href="javascript:void(0);" class="btn btn-danger btn-stop" role="button">削除</a>

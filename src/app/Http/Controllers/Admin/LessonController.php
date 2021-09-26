@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Lesson;
 use App\Models\Category;
+use App\Models\Section;
 
 class LessonController extends Controller
 {
@@ -91,6 +92,18 @@ class LessonController extends Controller
         $lesson->save();
 
         return redirect()->route('admin.admin.lesson.index');
+    }
+
+     public function detail($id)
+    {
+        $lesson = Lesson::where('id', $id)->first();
+        $categorys = Category::get(['id','name',]);
+        $sections = Lesson::find($id)->sections->sortBy('sort');
+        return view('admin.contents.lesson.detail', [
+            'lesson' => $lesson,
+            'categorys' => $categorys,
+            'sections' => $sections,
+        ]);
     }
 
     public function destroy($id)
