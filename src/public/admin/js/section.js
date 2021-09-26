@@ -29,7 +29,7 @@ let Section = {
     destory: function (data) {
         this.url = null;
     },
-    send: function () {
+    send: function (callback) {
         try {
             if(!this.url|!this.data) throw new Error('URLが無いか、または送信データがありません')
             $.ajax({
@@ -40,7 +40,7 @@ let Section = {
                     'X-CSRF-TOKEN': config.csrf_token,
                 },
             }).done(function( data ) {
-                if(!data) alert('順番を変更することができませんでした') 
+                if(callback) callback(data); 
             }) 
         } catch(err) {
             alert(err);

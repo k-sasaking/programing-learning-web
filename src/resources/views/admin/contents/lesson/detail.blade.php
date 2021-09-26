@@ -91,17 +91,18 @@
         <tr>
             <td>{{ count($sections) + 1 }}</td>
             <td>
-                <?php $field = 'new_section' ?>
-                <input type="text" id="{{$field}}" class="form-control" placeholder="セクション名" name="{{ $field }}" 
-                value="" >
-                @if($errors->has($field))
-                    <span class="help-block">{{ $errors->first($field) }}</span>
-                @endif
+                <form action="{{ route('admin.admin.lesson.section.create', [ 'id' => $lesson->id ]) }}">
+                    @csrf
+                    <?php $field = 'new_section' ?>
+                    <input type="text" id="{{$field}}" class="form-control" placeholder="セクション名" name="{{ $field }}" 
+                    value="" >
+                    @if($errors->has($field))
+                        <span class="help-block">{{ $errors->first($field) }}</span>
+                    @endif
+                </form>
             </td>
             <td>
-                <a href="{{ route('admin.admin.lesson.edit', [ 'id' => $lesson->id ]) }}">
-                    <button type="button" class="btn btn-success">セクションを追加</button>
-                </a>
+                <button type="submit" class="btn btn-success" role="button">セクションを追加</button>
             </td>
         </tr>
     </tbody>
@@ -129,7 +130,7 @@ let sortable = Sortable.create(sort_table, {
         $('#sort_table tr').each(function(index, element){
             $(element).find('.no').text(index+1)
         })
-        Section.sort().send();
+        Section.sort().send((data) => { if(!data) alert('順番を変更することができませんでした') });
     },
 });
 </script>
