@@ -73,38 +73,68 @@
         @foreach($sections as $section)
         <tr>
             <td class="no" data-section-id="{{ $section->id }}">{{ $section->sort  }}</td>
-            <td>{{ $section->name }}</td>
+            <td class="sec{{ $section->sort }} block">
+                <span id="span">{{ $section->name }}</span>
+            </td>
+            <td class="sec{{ $section->sort }} hidden">
+                <div class="container">
+                    <form class="btn-destroy" action="{{ route('admin.admin.lesson.section.update', [ 'id' => $lesson->id ] )}}" method="POST">
+                        @csrf
+                        <div class="row">
+                            <div class="col-sm">
+                                <?php $field = 'name' ?>
+                                <input type='text' name="{{$field}}" value="{{ $section->name }}">
+                                <?php $field = 'id' ?>
+                                <input type="hidden" name="{{$field}}" value="{{ $section->id }}">
+                            </div>
+                        </div>
+                        <div class="row mt-2">
+                            <div class="col-sm">
+                                <button type="submit" class="btn btn-success btn-sm" role="button">更新</button>
+                                <button type="button" class="btn btn-primary btn-sm btn-switch" id="btn-sec{{ $section->sort }}">キャンセル</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </td>
             <td>{{ $section->created_at }}</td>
             <td>{{ $section->updated_at }}</td>
             <td>
-               <a href="{{ route('admin.admin.lesson.edit', [ 'id' => $lesson->id ]) }}">
-                    <button type="button" class="btn btn-primary">編集</button>
-                </a>
-               <a href="{{ route('admin.admin.lesson.edit', [ 'id' => $lesson->id ]) }}">
-                    <button type="button" class="btn btn-danger">削除</button>
-                </a>
+                <button type="button" class="btn btn-primary btn-switch" id="btn-sec{{ $section->sort }}">編集</button>
+                <form class="btn-destroy" action="{{ route('admin.admin.lesson.section.destroy', [ 'id' => $lesson->id ] )}}" method="POST">
+                    @csrf
+                    <?php $field = 'id' ?>
+                    <input type="hidden" name="{{$field}}" value="{{ $section->id }}">
+                    <?php $field = 'lesson_id' ?>
+                    <input type="hidden" name="{{$field}}" value="{{ $lesson->id }}">
+                    <a href="javascript:void(0);" class="btn btn-danger btn-stop" role="button">削除</a>
+                </form>
             </td>
         </tr>
         @endforeach
     </tbody>
     <tbody>
+        <form action="{{ route('admin.admin.lesson.section.store', [ 'id' => $lesson->id ]) }}" method="POST">
         <tr>
             <td>{{ count($sections) + 1 }}</td>
             <td>
-                <form action="{{ route('admin.admin.lesson.section.create', [ 'id' => $lesson->id ]) }}">
-                    @csrf
-                    <?php $field = 'new_section' ?>
-                    <input type="text" id="{{$field}}" class="form-control" placeholder="セクション名" name="{{ $field }}" 
-                    value="" >
-                    @if($errors->has($field))
-                        <span class="help-block">{{ $errors->first($field) }}</span>
-                    @endif
-                </form>
+                @csrf
+                <?php $field = 'name' ?>
+                <input type="text" id="{{$field}}" class="form-control" placeholder="セクション名" name="{{ $field }}" 
+                value="" >
+                <?php $field = 'sort' ?>
+                <input type="hidden" name="{{$field}}" value="{{ count($sections) + 1 }}">
+                    <?php $field = 'lesson_id' ?>
+                <input type="hidden" name="{{$field}}" value="{{ $lesson->id }}">
+                @if($errors->has($field))
+                    <span class="help-block">{{ $errors->first($field) }}</span>
+                @endif
             </td>
             <td>
                 <button type="submit" class="btn btn-success" role="button">セクションを追加</button>
             </td>
         </tr>
+        </form>
     </tbody>
 </table>
 @endsection
@@ -112,6 +142,25 @@
 @push('scripts')
 <!-- jsDelivr :: Sortable :: Latest (https://www.jsdelivr.com/package/npm/sortablejs) -->
 <script>
+    $('.btn-switch').on('click',function(){
+        let className = $(this).attr('id').slice(4);
+        let elm = document.getElementsByClassName(className);
+
+        if (elm[0].classList.contains('block')) {
+            elm[0].classList.replace('block', 'hidden');
+            elm[1].classList.replace('hidden', 'block');
+        } else {
+            elm[0].classList.replace('hidden', 'block');
+            elm[1].classList.replace('block', 'hidden');
+        }
+    })
+
+    $('.btn-stop').on('click',function(){
+        if(confirm('このセクションを削除しますか？')){
+            $(this).parent().submit();
+        }
+    })
+
     let config = {
         "csrf_token" : "{{ csrf_token() }}",
         "url" : {    
