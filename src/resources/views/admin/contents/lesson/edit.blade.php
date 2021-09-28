@@ -6,14 +6,14 @@
 <nav aria-label="breadcrumb">
   <ol class="breadcrumb">
     <li class="breadcrumb-item"><a href="{{ route('admin.user.index') }}">Home</a></li>
-    <li class="breadcrumb-item"><a href="{{ route('admin.admin.lesson.index') }}">レッスン管理</a></li>
+    <li class="breadcrumb-item"><a href="{{ route('admin.lesson.index') }}">レッスン管理</a></li>
     <li class="breadcrumb-item active" aria-current="page">レッスン編集</li>
   </ol>
 </nav>
 @endsection
 
 @section('content')
-        <form action="{{ route('admin.admin.lesson.update', ['id' => $lesson->id ]) }}" method="POST">
+        <form action="{{ route('admin.lesson.update', ['id' => $lesson->id ]) }}" method="POST">
         @csrf
             <div class="form-group row">
                 <?php $field = 'name' ?>
@@ -39,10 +39,11 @@
             </div>  
             <div class="form-group row">
                 <?php $field = 'thumbnail_path' ?>
+                <input type="hidden" name="{{ $field }}" value="{{ $lesson[$field] }}">
                 <label for="{{$field}}" class="col-sm-2 col-form-label">サムネイ</label>
                 <div class="col-sm-10 d-flex align-items-end">
                     <img src="{{ $lesson[$field] }}" height="300px" class="mr-3">
-                    <a href="{{ route('admin.admin.lesson.img.edit', [ 'id' => $lesson->id ]) }}">
+                    <a href="{{ route('admin.lesson.img.edit', [ 'id' => $lesson->id ]) }}">
                         <button type="button" class="btn btn-secondary">アップロード</button>
                     </a>
                 </div>

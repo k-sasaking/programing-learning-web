@@ -6,7 +6,7 @@
 <nav aria-label="breadcrumb">
   <ol class="breadcrumb">
     <li class="breadcrumb-item"><a href="{{ route('admin.user.index') }}">Home</a></li>
-    <li class="breadcrumb-item"><a href="{{ route('admin.admin.lesson.index') }}">レッスン管理</a></li>
+    <li class="breadcrumb-item"><a href="{{ route('admin.lesson.index') }}">レッスン管理</a></li>
     <li class="breadcrumb-item active" aria-current="page">レッスン新規作成</li>
   </ol>
 </nav>
@@ -14,7 +14,7 @@
 
 
 @section('content')
-        <form action="{{ route('admin.admin.lesson.store')}}" method="POST">
+        <form action="{{ route('admin.lesson.store')}}" method="POST">
         @csrf
             <div class="form-group row">
                 <?php $field = 'name' ?>

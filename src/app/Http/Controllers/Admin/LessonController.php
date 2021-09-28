@@ -56,7 +56,7 @@ class LessonController extends Controller
 
         Lesson::create($request->all());
 
-        return redirect()->route('admin.admin.lesson.index');
+        return redirect()->route('admin.lesson.index');
     }
 
     public function edit($id)
@@ -91,7 +91,7 @@ class LessonController extends Controller
 
         $lesson->save();
 
-        return redirect()->route('admin.admin.lesson.index');
+        return redirect()->route('admin.lesson.index');
     }
 
      public function detail($id)
@@ -110,6 +110,6 @@ class LessonController extends Controller
     {
         $lesson = Lesson::where('id', $id)->first();
         $lesson->delete();
-        return redirect()->route('admin.admin.lesson.index');
+        return redirect()->route('admin.lesson.index');
     }   
 }

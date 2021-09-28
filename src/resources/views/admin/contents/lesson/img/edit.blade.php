@@ -7,7 +7,7 @@
                 <?php $field = 'file' ?>
                 <label for="{{$field}}" class="col-sm-2 col-form-label">画像ファイル</label>
                 <div class="col-sm-10">
-                    <form action="{{ route('admin.admin.lesson.img.update', [ 'id' => $id ])}}" method="POST" enctype="multipart/form-data">
+                    <form action="{{ route('admin.lesson.img.update', [ 'id' => $id ])}}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <input type="file" id="{{$field}}"  name="{{ $field }}" 
                     value="" >

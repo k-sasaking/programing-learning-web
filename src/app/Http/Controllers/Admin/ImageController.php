@@ -43,7 +43,7 @@ class ImageController extends Controller
             $lesson->save();
         }
 
-        return redirect()->route('admin.admin.lesson.edit', [
+        return redirect()->route('admin.lesson.edit', [
             'id' => $id,
         ]);
     }

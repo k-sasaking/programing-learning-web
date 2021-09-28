@@ -41,20 +41,20 @@ Route::middleware('auth:admins')->group(function () {
     Route::get('/admin/edit/{id}', [AdminController::class, 'edit'])->name('admin.edit');
     Route::post('/admin/edit/{id}', [AdminController::class, 'update'])->name('admin.update');
     Route::post('/admin/delete/{id}', [AdminController::class, 'destroy'])->name('admin.destroy');
-    Route::post('/admin/user/csvdownload', [UserController::class, 'csvdownload'])->name('admin.user.csvdownload');
-    Route::get('/admin/lesson/', [LessonController::class, 'index'])->name('admin.lesson.index');
-    Route::get('/admin/lesson/create', [LessonController::class, 'create'])->name('admin.lesson.create');
-    Route::post('/admin/lesson/store', [LessonController::class, 'store'])->name('admin.lesson.store');
-    Route::get('/admin/lesson/edit/{id}', [LessonController::class, 'edit'])->name('admin.lesson.edit');
-    Route::post('/admin/lesson/edit/{id}', [LessonController::class, 'update'])->name('admin.lesson.update');
-    Route::get('/admin/lesson/detail/{id}', [LessonController::class, 'detail'])->name('admin.lesson.detail');
-    Route::post('/admin/lesson/delete/{id}', [LessonController::class, 'destroy'])->name('admin.lesson.destroy');
-    Route::get('/admin/lesson/img/edit/{id}', [ImageController::class, 'edit'])->name('admin.lesson.img.edit');
-    Route::post('/admin/lesson/img/upload/{id}', [ImageController::class, 'update'])->name('admin.lesson.img.update');
-    Route::post('/admin/lesson/{id}/section/create', [SectionController::class, 'create'])->name('admin.lesson.section.create');
-    Route::post('/admin/lesson/{id}/section/update/{sec_id}', [SectionController::class, 'update'])->name('admin.lesson.section.update');
-    Route::post('/admin/lesson/{id}/section/sort', [SectionController::class, 'sort'])->name('admin.lesson.section.sort');
-    Route::post('/admin/lesson/{id}/section/destroy/{sec_id}', [SectionController::class, 'destroy'])->name('admin.lesson.section.destory');
+    Route::post('/user/csvdownload', [UserController::class, 'csvdownload'])->name('user.csvdownload');
+    Route::get('/lesson', [LessonController::class, 'index'])->name('lesson.index');
+    Route::get('/lesson/create', [LessonController::class, 'create'])->name('lesson.create');
+    Route::post('/lesson/store', [LessonController::class, 'store'])->name('lesson.store');
+    Route::get('/lesson/edit/{id}', [LessonController::class, 'edit'])->name('lesson.edit');
+    Route::post('/lesson/edit/{id}', [LessonController::class, 'update'])->name('lesson.update');
+    Route::get('/lesson/detail/{id}', [LessonController::class, 'detail'])->name('lesson.detail');
+    Route::post('/lesson/delete/{id}', [LessonController::class, 'destroy'])->name('lesson.destroy');
+    Route::get('/lesson/img/edit/{id}', [ImageController::class, 'edit'])->name('lesson.img.edit');
+    Route::post('/lesson/img/upload/{id}', [ImageController::class, 'update'])->name('lesson.img.update');
+    Route::post('/lesson/{id}/section/store', [SectionController::class, 'store'])->name('lesson.section.store');
+    Route::post('/lesson/{id}/section/update/', [SectionController::class, 'update'])->name('lesson.section.update');
+    Route::post('/lesson/{id}/section/sort', [SectionController::class, 'sort'])->name('lesson.section.sort');
+    Route::post('/lesson/{id}/section/destroy', [SectionController::class, 'destroy'])->name('lesson.section.destroy');
 });
 
 

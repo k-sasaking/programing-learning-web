@@ -73,7 +73,7 @@
     </div>
 </div>
 <div class="head_menu">
-    <form action="{{ route('admin.admin.user.csvdownload') }}" method="POST">
+    <form action="{{ route('admin.user.csvdownload') }}" method="POST">
         @csrf
         <button type="submit" class="btn btn-success" role="button">csvダウンロード</a>
     </form>
