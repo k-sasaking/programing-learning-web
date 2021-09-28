@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Lesson;
 use App\Models\Section;
 use Exception;
 use Illuminate\Http\Request;
@@ -22,7 +23,7 @@ class SectionController extends Controller
 
         Section::create($request->all());
 
-        return redirect()->route('admin.admin.lesson.detail', [ 'id' => $id]);
+        return redirect()->route('admin.lesson.detail', [ 'id' => $id]);
     }
 
     public function update(Request $request, $id)
@@ -30,7 +31,7 @@ class SectionController extends Controller
         $section = Section::where('id', $request->id)->first();
         $section['name'] = $request->name;
         $section->save();
-        return redirect()->route('admin.admin.lesson.detail', [ 'id' => $id ]);
+        return redirect()->route('admin.lesson.detail', [ 'id' => $id ]);
     }
 
     public function sort(Request $request)
@@ -47,6 +48,17 @@ class SectionController extends Controller
     {
         $section = Section::where('id', $request->id )->first();
         $section->delete();
-        return redirect()->route('admin.admin.lesson.detail', [ 'id' => $id ]);
+
+        $sections = Lesson::find($id)->sections->sortBy('sort');
+        
+        //セクションの順番を更新したい
+        $sort = 1;
+        foreach ($sections as $s) {
+            $section = Section::where('id', $s->id)->first();
+            $section['sort'] =  $sort;
+            $section->save();
+            $sort++;
+        }
+        return redirect()->route('admin.lesson.detail', [ 'id' => $id ]);
     }
 }

@@ -6,7 +6,7 @@
 <nav aria-label="breadcrumb">
   <ol class="breadcrumb">
     <li class="breadcrumb-item"><a href="{{ route('admin.user.index') }}">Home</a></li>
-    <li class="breadcrumb-item"><a href="{{ route('admin.admin.lesson.index') }}">レッスン管理</a></li>
+    <li class="breadcrumb-item"><a href="{{ route('admin.lesson.index') }}">レッスン管理</a></li>
     <li class="breadcrumb-item active" aria-current="page">レッスン詳細</li>
   </ol>
 </nav>
@@ -53,7 +53,7 @@
             <a href="javascript:history.back();">
                 <button type="button" class="btn btn-secondary">戻る</button>
             </a>
-            <a href="{{ route('admin.admin.lesson.edit', [ 'id' => $lesson->id ]) }}">
+            <a href="{{ route('admin.lesson.edit', [ 'id' => $lesson->id ]) }}">
                 <button type="button" class="btn btn-primary">編集</button>
             </a>
         </div>
@@ -78,7 +78,7 @@
             </td>
             <td class="sec{{ $section->sort }} hidden">
                 <div class="container">
-                    <form class="btn-destroy" action="{{ route('admin.admin.lesson.section.update', [ 'id' => $lesson->id ] )}}" method="POST">
+                    <form class="btn-destroy" action="{{ route('admin.lesson.section.update', [ 'id' => $lesson->id ] )}}" method="POST">
                         @csrf
                         <div class="row">
                             <div class="col-sm">
@@ -101,7 +101,7 @@
             <td>{{ $section->updated_at }}</td>
             <td>
                 <button type="button" class="btn btn-primary btn-switch" id="btn-sec{{ $section->sort }}">編集</button>
-                <form class="btn-destroy" action="{{ route('admin.admin.lesson.section.destroy', [ 'id' => $lesson->id ] )}}" method="POST">
+                <form class="btn-destroy" action="{{ route('admin.lesson.section.destroy', [ 'id' => $lesson->id ] )}}" method="POST">
                     @csrf
                     <?php $field = 'id' ?>
                     <input type="hidden" name="{{$field}}" value="{{ $section->id }}">
@@ -114,7 +114,7 @@
         @endforeach
     </tbody>
     <tbody>
-        <form action="{{ route('admin.admin.lesson.section.store', [ 'id' => $lesson->id ]) }}" method="POST">
+        <form action="{{ route('admin.lesson.section.store', [ 'id' => $lesson->id ]) }}" method="POST">
         <tr>
             <td>{{ count($sections) + 1 }}</td>
             <td>
@@ -164,7 +164,7 @@
     let config = {
         "csrf_token" : "{{ csrf_token() }}",
         "url" : {    
-            "sort" : "{{ route('admin.admin.lesson.section.sort', [ 'id' => $lesson->id, ]) }}",
+            "sort" : "{{ route('admin.lesson.section.sort', [ 'id' => $lesson->id, ]) }}",
         },
     }
 </script>
