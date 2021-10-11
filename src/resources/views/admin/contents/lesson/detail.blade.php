@@ -42,11 +42,7 @@
             <?php $field = 'category_id' ?>
             <label for="{{$field}}" class="col-sm-2">カテゴリー</label>
             <div class="col-sm-10">
-                @foreach($categorys as $category)
-                    @if($lesson->category_id == $category->id)
-                        {{$category->name}}
-                    @endif
-                @endforeach
+                {{ $lesson->category->name }}
             </div>
         </div>  
         <div class="search_button">
@@ -70,7 +66,7 @@
         </tr>
     </thead>
     <tbody id="sort_table">
-        @foreach($sections as $section)
+        @foreach($lesson->sections->sortBy('sort') as $section)
         <tr>
             <td class="no" data-section-id="{{ $section->id }}">{{ $section->sort  }}</td>
             <td class="sec{{ $section->sort }} block">
@@ -101,6 +97,7 @@
             <td>{{ $section->updated_at }}</td>
             <td>
                 <button type="button" class="btn btn-primary btn-switch" id="btn-sec{{ $section->sort }}">編集</button>
+                <a href="{{ route('admin.lecture.detail', ['id' => $section->id ]) }}" class="btn btn-info" role="button">詳細</a>
                 <form class="btn-destroy" action="{{ route('admin.lesson.section.destroy', [ 'id' => $lesson->id ] )}}" method="POST">
                     @csrf
                     <?php $field = 'id' ?>

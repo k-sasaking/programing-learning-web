@@ -13,6 +13,7 @@ use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\LessonController;
 use App\Http\Controllers\Admin\SectionController;
+use App\Http\Controllers\Admin\LectureController;
 use App\Http\Controllers\Admin\ImageController;
 use Illuminate\Support\Facades\Route;
 
@@ -42,6 +43,11 @@ Route::middleware('auth:admins')->group(function () {
     Route::post('/admin/edit/{id}', [AdminController::class, 'update'])->name('admin.update');
     Route::post('/admin/delete/{id}', [AdminController::class, 'destroy'])->name('admin.destroy');
     Route::post('/user/csvdownload', [UserController::class, 'csvdownload'])->name('user.csvdownload');
+
+
+    /**
+     * 
+     */
     Route::get('/lesson', [LessonController::class, 'index'])->name('lesson.index');
     Route::get('/lesson/create', [LessonController::class, 'create'])->name('lesson.create');
     Route::post('/lesson/store', [LessonController::class, 'store'])->name('lesson.store');
@@ -51,10 +57,28 @@ Route::middleware('auth:admins')->group(function () {
     Route::post('/lesson/delete/{id}', [LessonController::class, 'destroy'])->name('lesson.destroy');
     Route::get('/lesson/img/edit/{id}', [ImageController::class, 'edit'])->name('lesson.img.edit');
     Route::post('/lesson/img/upload/{id}', [ImageController::class, 'update'])->name('lesson.img.update');
+
+    /**
+     * 
+     */
     Route::post('/lesson/{id}/section/store', [SectionController::class, 'store'])->name('lesson.section.store');
     Route::post('/lesson/{id}/section/update/', [SectionController::class, 'update'])->name('lesson.section.update');
     Route::post('/lesson/{id}/section/sort', [SectionController::class, 'sort'])->name('lesson.section.sort');
     Route::post('/lesson/{id}/section/destroy', [SectionController::class, 'destroy'])->name('lesson.section.destroy');
+
+    /**
+     *  
+     */
+    Route::get('/lesson/section/{id}/detail', [LectureController::class, 'detail'])->name('lecture.detail');
+    Route::post('/lesson/section/lecture/store/{id}', [LectureController::class, 'store'])->name('lecture.store');
+    Route::post('/lesson/section/lecture/sort/{id}', [LectureController::class, 'sort'])->name('lecture.sort');
+    Route::post('/lesson/section/lecture/destory/{id}', [LectureController::class, 'destroy'])->name('lecture.destroy');
+
+    /**
+     * 
+     */
+    Route::get('/lesson/section/lecture/edit/{id}', [LectureController::class, 'detail'])->name('lecture.edit');
+
 });
 
 

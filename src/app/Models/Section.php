@@ -26,4 +26,14 @@ class Section extends Model
             $section->save();
         }
     }
+
+    public function lectures ()
+    {
+        return $this->hasMany(Lecture::class);
+    }
+
+    public function lesson()
+    {
+        return $this->belongsTo(Lesson::class);
+    }
 }
