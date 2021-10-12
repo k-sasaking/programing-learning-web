@@ -65,11 +65,11 @@ Route::middleware('auth:admins')->group(function () {
     Route::post('/lesson/{id}/section/update/', [SectionController::class, 'update'])->name('lesson.section.update');
     Route::post('/lesson/{id}/section/sort', [SectionController::class, 'sort'])->name('lesson.section.sort');
     Route::post('/lesson/{id}/section/destroy', [SectionController::class, 'destroy'])->name('lesson.section.destroy');
+    Route::get('/lesson/section/{id}/detail', [LectureController::class, 'detail'])->name('section.detail');
 
     /**
      *  
      */
-    Route::get('/lesson/section/{id}/detail', [LectureController::class, 'detail'])->name('lecture.detail');
     Route::post('/lesson/section/lecture/store/{id}', [LectureController::class, 'store'])->name('lecture.store');
     Route::post('/lesson/section/lecture/sort/{id}', [LectureController::class, 'sort'])->name('lecture.sort');
     Route::post('/lesson/section/lecture/destory/{id}', [LectureController::class, 'destroy'])->name('lecture.destroy');
@@ -77,7 +77,8 @@ Route::middleware('auth:admins')->group(function () {
     /**
      * 
      */
-    Route::get('/lesson/section/lecture/edit/{id}', [LectureController::class, 'detail'])->name('lecture.edit');
+    Route::get('/lesson/section/lecture/edit/{id}', [LectureController::class, 'edit'])->name('lecture.edit');
+    Route::post('/lesson/section/lecture/update/{id}', [LectureController::class, 'update'])->name('lecture.update');
 
 });
 

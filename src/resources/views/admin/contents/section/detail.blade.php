@@ -52,7 +52,7 @@
             <td>{{ $lecture->created_at }}</td>
             <td>{{ $lecture->updated_at }}</td>
             <td>
-            <a href="{{ route('admin.lecture.detail', ['id' => $section->id ]) }}" class="btn btn-primary" role="button">編集</a>
+            <a href="{{ route('admin.lecture.edit', ['id' => $lecture->id ]) }}" class="btn btn-primary" role="button">編集</a>
             <form class="btn-destroy" action="{{ route('admin.lecture.destroy', [ 'id' => $lecture->id ] )}}" method="POST">
                     @csrf
                     <?php $field = 'id' ?>
@@ -105,7 +105,7 @@
     })
 
     $('.btn-stop').on('click',function(){
-        if(confirm('このセクションを削除しますか？')){
+        if(confirm('このレクチャーを削除しますか？')){
             $(this).parent().submit();
         }
     })
