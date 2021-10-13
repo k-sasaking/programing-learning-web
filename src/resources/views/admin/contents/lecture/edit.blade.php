@@ -42,8 +42,8 @@
     <div class="col-sm">
         <div class="search card">
             <div class="card-header">プレビュー</div>
-                <div class="card-body" id='marked_content'>
-                </div>
+            <div class="card-body" id='marked_content'>
+            </div>
             </div>
         </div>
     </div>
