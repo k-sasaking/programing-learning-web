@@ -31,6 +31,9 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::middleware('auth:admins')->group(function () {
+    /**
+     * ユーザー管理関連のルート
+     */
     Route::get('/user', [UserController::class, 'index'])->name('user.index');
     Route::get('/user/edit/{id}', [UserController::class, 'edit'])->name('user.edit');
     Route::post('/user/edit/{id}', [UserController::class, 'update'])->name('user.update');
@@ -46,7 +49,7 @@ Route::middleware('auth:admins')->group(function () {
 
 
     /**
-     * 
+     * レッスン関連のルート
      */
     Route::get('/lesson', [LessonController::class, 'index'])->name('lesson.index');
     Route::get('/lesson/create', [LessonController::class, 'create'])->name('lesson.create');
@@ -59,7 +62,7 @@ Route::middleware('auth:admins')->group(function () {
     Route::post('/lesson/img/upload/{id}', [ImageController::class, 'update'])->name('lesson.img.update');
 
     /**
-     * 
+     * セクション関連のルート
      */
     Route::post('/lesson/{id}/section/store', [SectionController::class, 'store'])->name('lesson.section.store');
     Route::post('/lesson/{id}/section/update/', [SectionController::class, 'update'])->name('lesson.section.update');
@@ -68,14 +71,14 @@ Route::middleware('auth:admins')->group(function () {
     Route::get('/lesson/section/{id}/detail', [LectureController::class, 'detail'])->name('section.detail');
 
     /**
-     *  
+     *  レクチャー関連のルート
      */
     Route::post('/lesson/section/lecture/store/{id}', [LectureController::class, 'store'])->name('lecture.store');
     Route::post('/lesson/section/lecture/sort/{id}', [LectureController::class, 'sort'])->name('lecture.sort');
     Route::post('/lesson/section/lecture/destory/{id}', [LectureController::class, 'destroy'])->name('lecture.destroy');
 
     /**
-     * 
+     * レクチャー編集関連のルート
      */
     Route::get('/lesson/section/lecture/edit/{id}', [LectureController::class, 'edit'])->name('lecture.edit');
     Route::post('/lesson/section/lecture/update/{id}', [LectureController::class, 'update'])->name('lecture.update');

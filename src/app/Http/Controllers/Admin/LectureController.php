@@ -73,12 +73,10 @@ class LectureController extends Controller
         
         //レクチャーの順番を更新したい
         $lectures = Lecture::where('section_id', $lecture->section_id)->get();
-        $sort = 1;
-        foreach ($lectures as $l) {
-            $lecture = Lecture::where('id', $l->id)->first();
-            $lecture['sort'] =  $sort;
+        foreach ($lectures as $index => $lecture) {
+            $lecture = Lecture::where('id', $lecture->id)->first();
+            $lecture['sort'] =  $index;
             $lecture->save();
-            $sort++;
         }
 
         return redirect()->route('admin.lecture.detail', [ 'id' =>  $lecture->section_id ]);

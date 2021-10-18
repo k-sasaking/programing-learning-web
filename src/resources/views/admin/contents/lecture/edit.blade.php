@@ -9,7 +9,7 @@
     <li class="breadcrumb-item"><a href="{{ route('admin.lesson.index') }}">レッスン管理</a></li>
     <li class="breadcrumb-item"><a href="{{ route('admin.lesson.detail', [ $lecture->section->lesson_id]) }}">レッスン詳細</a></li>
     <li class="breadcrumb-item"><a href="{{ route('admin.section.detail', [ $lecture->section_id ]) }}">セクション詳細</a></li>
-    <li class="breadcrumb-item active" aria-current="page">セクション編集</li>
+    <li class="breadcrumb-item active" aria-current="page">レクチャー編集</li>
   </ol>
 </nav>
 @endsection
