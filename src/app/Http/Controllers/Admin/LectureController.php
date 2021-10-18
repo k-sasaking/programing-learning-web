@@ -20,10 +20,9 @@ class LectureController extends Controller
 
     public function sort(Request $request)
     {
-        try{
-            Lecture::sort($request->sort_data);
-            return true;    
-        } catch(Exception $e) {
+        if(Lecture::sort($request->sort_data)) {
+            return true;
+        } else {
             return false;
         }
     }

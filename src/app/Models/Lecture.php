@@ -30,6 +30,7 @@ class Lecture extends Model
             $lecture['sort'] = $key + 1;
             $lecture->save();
         }
+        return true;
     }
 
     public function section()
