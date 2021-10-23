@@ -21,4 +21,9 @@ class Lesson extends Model
     {
         return $this->hasMany(Section::class);
     }
+
+    public function category ()
+    {
+         return $this->belongsTo(Category::class);
+    }
 }

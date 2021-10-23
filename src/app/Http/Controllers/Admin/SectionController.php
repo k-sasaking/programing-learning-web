@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Category;
 use App\Models\Lesson;
 use App\Models\Section;
 use Exception;
@@ -42,6 +43,14 @@ class SectionController extends Controller
         } catch(Exception $e) {
             return false;
         }
+    }
+
+    public function detail($id)
+    {
+        $lesson = Lesson::where('id', $id)->first();
+        return view('admin.contents.lesson.detail', [
+            'lesson' => $lesson,
+        ]);
     }
 
     public function destroy(Request $request, $id) 
